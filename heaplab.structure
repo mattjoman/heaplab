@@ -1,0 +1,42 @@
+HeapLab/
+├── include/
+│   ├── allocator.h        # Abstract allocator interface
+│   ├── heaplab.h          # Global types, config, helpers
+│   ├── scenarios.h        # Scenario entry points
+│   └── inspect.h          # Heap inspection utilities
+│
+├── src/
+│   ├── allocator/
+│   │   ├── malloc_allocator.c   # Thin wrapper over glibc malloc
+│   │   ├── malloc_allocator.h
+│   │   └── custom_allocator.c   # (stub for future)
+│   │
+│   ├── scenarios/
+│   │   ├── fragment.c
+│   │   ├── uaf.c
+│   │   ├── double_free.c
+│   │   └── overflow.c
+│   │
+│   ├── inspect/
+│   │   ├── glibc.c         # ptmalloc metadata introspection
+│   │   ├── dump.c          # Hex dumps, chunk headers
+│   │   └── symbols.c       # Optional disassembly helpers
+│   │
+│   ├── cli.c               # Argument parsing / mode selection
+│   └── main.c
+│
+├── scripts/
+│   ├── gdb/
+│   │   ├── heap.gdb        # Custom GDB commands/macros
+│   │   └── walkthrough.md
+│   ├── asan.sh
+│   └── valgrind.sh
+│
+├── docs/
+│   ├── internals.md        # Notes on ptmalloc behavior
+│   ├── experiments.md     # Expected outcomes per scenario
+│   └── mitigations.md
+│
+├── Makefile
+└── README.md
+
