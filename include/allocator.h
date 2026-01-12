@@ -22,27 +22,22 @@ typedef struct heap_allocator heap_allocator_t;
 
 
 
-/* Allocator vtable */
-typedef struct {
-    void* (*alloc)(heap_allocator_t*, size_t size, heap_alloc_flags_t flags);
-    void  (*free)(heap_allocator_t*, void* ptr);
-    void* (*realloc)(heap_allocator_t*, void* ptr, size_t size);
-    void* (*alloc_aligned)(heap_allocator_t*, size_t size, size_t align);
-
-    /* Optional hooks */
-    void  (*dump_state)(heap_allocator_t*);
-    void  (*set_option)(heap_allocator_t*, const char* key, long value);
-} heap_allocator_ops_t;
-
-
-
-
 /* Allocator instance */
 struct heap_allocator {
     const char* name;
     void*       state;   // allocator-specific (e.g. glibc info)
-    heap_allocator_ops_t ops;
+    //heap_allocator_ops_t ops;
+
+    void* (*m_alloc)(size_t size);
+    void  (*m_free)(void* ptr);
+    void* (*m_realloc)(void* ptr, size_t size);
+    void* (*m_alloc_aligned)(size_t size, size_t align);
 };
+
+
+
+
+heap_allocator_t get_malloc_allocator();
 
 
 
