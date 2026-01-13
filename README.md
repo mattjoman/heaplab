@@ -6,3 +6,6 @@
     - This will require reverse-engineering some of glibc
     - Version drift will cause inspection code to break
     - Consider implementing heap inspection for my custom allocator when finished
+- Builds:
+    - Main build (with debugging enabled)
+    - Asan build (with debugging & -fsanitize=address)

@@ -8,7 +8,6 @@ HeapLab/
 ├── src/
 │   ├── allocator/
 │   │   ├── malloc_allocator.c   # Thin wrapper over glibc malloc
-│   │   ├── malloc_allocator.h
 │   │   └── custom_allocator.c   # (stub for future)
 │   │
 │   ├── scenarios/

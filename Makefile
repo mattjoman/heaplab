@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-O2 -Wall -Wextra -std=gnu11 -g
+CFLAGS=-O2 -Wall -Wextra -std=gnu11 -g -fsanitize=address
 
 SRCS=src/main.c src/scenarios/uaf.c src/scenarios/double_free.c src/allocator/malloc_allocator.c
 OBJS=$(SRCS:.c=.o)
