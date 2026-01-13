@@ -9,3 +9,7 @@
 - Builds:
     - Main build (with debugging enabled)
     - Asan build (with debugging & -fsanitize=address)
+- Add scenarios:
+    - `uaf_reuse.c`
+    - `uaf_read.c`
+    - `uaf_write.c`
