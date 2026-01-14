@@ -1,2 +1,5 @@
 #!/bin/bash
-echo "yes"
+
+make clean \
+&& make \
+&& valgrind --tool=memcheck ./out

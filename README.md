@@ -1,5 +1,15 @@
 # HeapLab
 
+## Requirements
+
+- Glibc debuginfo (for valgrind) -- not available on arch without some pain
+- Valgrind
+- GCC, Make
+
+## Usage
+
+- `scripts/asan.sh` to build & execute asan tests
+
 ## Notes
 
 - Don't implement `src/inspect/glibc.c`
@@ -13,3 +23,4 @@
     - `uaf_reuse.c`
     - `uaf_read.c`
     - `uaf_write.c`
+- Run on debian for valgrind memcheck

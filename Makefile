@@ -1,5 +1,7 @@
-CC=gcc
-CFLAGS=-O2 -Wall -Wextra -std=gnu11 -g
+CC      =gcc
+CFLAGS ?=
+CFLAGS += -std=gnu11 -Wall -Wextra -g
+CFLAGS += $(EXTRA_CFLAGS)
 
 SRCS=src/main.c src/scenarios/uaf.c src/scenarios/double_free.c src/allocator/malloc_allocator.c
 OBJS=$(SRCS:.c=.o)
