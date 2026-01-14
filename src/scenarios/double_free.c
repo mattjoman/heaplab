@@ -20,13 +20,7 @@ void double_free() {
 
     alloc.m_free(i);
 
-    printf("%p\n", i);
-    printf("%d\n", *i);
-
     alloc.m_free(i);
-
-    printf("%p\n", i);
-    printf("%d\n", *i);
 
     return;
 }
