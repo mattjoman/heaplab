@@ -4,15 +4,15 @@
 
 int main() {
 
-#ifdef ENABLE_UAF
+#ifdef UAF
     uaf();
 #endif
 
-#ifdef ENABLE_DOUBLE_FREE
+#ifdef DOUBLE_FREE
     double_free();
 #endif
 
-#ifdef ENABLE_HEAP_OVERFLOW
+#ifdef HEAP_OVERFLOW
     heap_overflow();
 #endif
 
