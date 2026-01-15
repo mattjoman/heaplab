@@ -12,7 +12,11 @@ ifeq ($(ENABLE_DOUBLE_FREE), 1)
 CFLAGS += -DENABLE_DOUBLE_FREE
 endif
 
-SRCS=src/main.c src/scenarios/uaf.c src/scenarios/double_free.c src/allocator/malloc_allocator.c
+ifeq ($(ENABLE_HEAP_OVERFLOW), 1)
+CFLAGS += -DENABLE_HEAP_OVERFLOW
+endif
+
+SRCS=src/main.c src/scenarios/uaf.c src/scenarios/double_free.c src/allocator/malloc_allocator.c src/scenarios/heap_overflow.c
 OBJS=$(SRCS:.c=.o)
 
 OUT=out
@@ -22,7 +26,7 @@ all: $(OUT)
 $(OUT): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $(OBJS)
 
-%.0: %.c
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

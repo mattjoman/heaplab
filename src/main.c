@@ -12,5 +12,10 @@ int main() {
     double_free();
 #endif
 
+#ifdef ENABLE_HEAP_OVERFLOW
+    heap_overflow();
+#endif
+
+    return 0;
 }
 

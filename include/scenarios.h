@@ -5,4 +5,6 @@ void uaf();
 
 void double_free();
 
+void heap_overflow();
+
 #endif
