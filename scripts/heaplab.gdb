@@ -57,17 +57,13 @@ define dumpchunk
     set $ptr_prev_size = ((char*)$ptr) - 16
     set $ptr_size = ((char*)$ptr) - 8
 
-    set $prev_inuse = (int)((*$ptr_size) & 0b001)
-    set $is_mmapped = (int)((*$ptr_size) & 0b010)
-    set $non_main_arena = (int)((*$ptr_size) & 0b100)
-
     set $size = (long)(*$ptr_size) & ~0x7
     set $prev_size = (long)(*$ptr_prev_size)
 
     printf "Chunk start:       %p\n", $ptr_prev_size
-    printf "PREV_INUSE:        %d\n", $prev_inuse
-    printf "IS_MMAPPED:        %d\n", $is_mmapped
-    printf "NON_MAIN_ARENA:    %d\n", $non_main_arena
+    printf "PREV_INUSE:        %d\n", (int)((*$ptr_size) & 0b001)
+    printf "IS_MMAPPED:        %d\n", (int)((*$ptr_size) & 0b010)
+    printf "NON_MAIN_ARENA:    %d\n", (int)((*$ptr_size) & 0b100)
     printf "Previous size:     %d\n", $prev_size
     printf "Size:              %d\n", $size
     printf "Hex dump:\n"
