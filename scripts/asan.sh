@@ -17,4 +17,4 @@ esac
 
 make clean
 make "$1" EXTRA_CFLAGS="-fsanitize=address -O0"
-./out
+./build/out

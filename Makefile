@@ -4,14 +4,18 @@ CFLAGS += -std=gnu11 -Wall -Wextra -g
 
 CFLAGS += $(EXTRA_CFLAGS)
 
-SRCS=src/main.c src/scenarios/uaf.c src/scenarios/double_free.c src/allocator/malloc_allocator.c src/scenarios/heap_overflow.c
+SRCS=src/main.c \
+		 src/scenarios/uaf.c \
+		 src/scenarios/double_free.c \
+		 src/allocator/malloc_allocator.c \
+		 src/scenarios/heap_overflow.c
 OBJS=$(SRCS:.c=.o)
-
-OUT=out
+OUT=build/out
 
 all: $(OUT)
 
 $(OUT): $(OBJS)
+	mkdir -p build/
 	$(CC) $(CFLAGS) -o $@ $(OBJS)
 
 %.o: %.c
