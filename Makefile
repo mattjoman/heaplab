@@ -1,7 +1,6 @@
 CC      =gcc
 CFLAGS ?=
-CFLAGS += -std=gnu11 -Wall -Wextra -g
-
+#CFLAGS += -std=gnu11 -Wall -Wextra -g
 CFLAGS += $(EXTRA_CFLAGS)
 
 SRCS=src/main.c \
