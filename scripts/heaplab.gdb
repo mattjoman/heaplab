@@ -57,8 +57,8 @@ define dumpchunk
     set $ptr_prev_size = ((char*)$ptr) - 16
     set $ptr_size = ((char*)$ptr) - 8
 
-    set $size = (long)(*$ptr_size) & ~0x7
-    set $prev_size = (long)(*$ptr_prev_size)
+    set $size = (*(size_t *)$ptr_size) & ~0x7
+    set $prev_size = *(size_t *)$ptr_prev_size
 
     printf "Chunk start:       %p\n", $ptr_prev_size
     printf "PREV_INUSE:        %d\n", (int)((*$ptr_size) & 0b001)
