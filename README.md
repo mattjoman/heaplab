@@ -24,3 +24,7 @@
     - `uaf_read.c`
     - `uaf_write.c`
 - Run on debian for valgrind memcheck
+
+## Use After Free (UAF)
+
+To run this scenario, run `build/out uaf`.

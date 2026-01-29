@@ -5,6 +5,7 @@ CFLAGS += -std=gnu11 -Wall -Wextra -g
 CFLAGS += $(EXTRA_CFLAGS)
 
 SRCS=src/main.c \
+		 src/scenarios/proper_usage.c \
 		 src/scenarios/uaf.c \
 		 src/scenarios/double_free.c \
 		 src/allocator/malloc_allocator.c \
