@@ -24,21 +24,6 @@ $(OUT): $(OBJS)
 clean:
 	rm -f $(OBJS) $(OUT)
 
-
-# ---------------------------
-# Scenario targets
-# ---------------------------
-
-uaf: CFLAGS += -DUAF
-uaf: all
-
-double_free: CFLAGS += -DDOUBLE_FREE
-double_free: all
-
-heap_overflow: CFLAGS += -DHEAP_OVERFLOW
-heap_overflow: all
-
-
 # ---------------------------
 # Mark phony targets
 # ---------------------------

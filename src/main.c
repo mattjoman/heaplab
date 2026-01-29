@@ -4,17 +4,9 @@
 
 int main() {
 
-#ifdef UAF
     uaf();
-#endif
-
-#ifdef DOUBLE_FREE
-    double_free();
-#endif
-
-#ifdef HEAP_OVERFLOW
-    heap_overflow();
-#endif
+    //double_free();
+    //heap_overflow();
 
     return 0;
 }
