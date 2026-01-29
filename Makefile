@@ -1,6 +1,5 @@
 CC      =gcc
 CFLAGS ?=
-#CFLAGS += -std=gnu11 -Wall -Wextra -g
 CFLAGS += $(EXTRA_CFLAGS)
 
 SRCS=src/main.c \
@@ -10,12 +9,12 @@ SRCS=src/main.c \
 		 src/allocator/malloc_allocator.c \
 		 src/scenarios/heap_overflow.c
 OBJS=$(SRCS:.c=.o)
-OUT=build/out
+OUT=bin/out
 
 all: $(OUT)
 
 $(OUT): $(OBJS)
-	mkdir -p build/
+	mkdir -p bin
 	$(CC) $(CFLAGS) -o $@ $(OBJS)
 
 %.o: %.c
@@ -28,4 +27,4 @@ clean:
 # Mark phony targets
 # ---------------------------
 
-.PHONY: all clean uaf double_free heap_overflow
+.PHONY: all clean
