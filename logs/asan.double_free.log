@@ -1,0 +1,28 @@
+=================================================================
+==3448==ERROR: AddressSanitizer: attempting double-free on 0x7c137bde0010 in thread T0:
+    #0 0x7ff37d51f79d in free /usr/src/debug/gcc/gcc/libsanitizer/asan/asan_malloc_linux.cpp:51
+    #1 0x55ff84d8ed81 in double_free src/scenarios/double_free.c:23
+    #2 0x55ff84d8e36c in main src/main.c:18
+    #3 0x7ff37d027634  (/usr/lib/libc.so.6+0x27634) (BuildId: 2f722da304c0a508c891285e6840199c35019c8d)
+    #4 0x7ff37d0276e8 in __libc_start_main (/usr/lib/libc.so.6+0x276e8) (BuildId: 2f722da304c0a508c891285e6840199c35019c8d)
+    #5 0x55ff84d8e124 in _start (/home/matt/portfolio/heaplab/bin/asan.out+0x2124) (BuildId: 43a6519703ff0d3557923b6401362ce882736d9e)
+
+0x7c137bde0010 is located 0 bytes inside of 4-byte region [0x7c137bde0010,0x7c137bde0014)
+freed by thread T0 here:
+    #0 0x7ff37d51f79d in free /usr/src/debug/gcc/gcc/libsanitizer/asan/asan_malloc_linux.cpp:51
+    #1 0x55ff84d8ed4a in double_free src/scenarios/double_free.c:21
+    #2 0x55ff84d8e36c in main src/main.c:18
+    #3 0x7ff37d027634  (/usr/lib/libc.so.6+0x27634) (BuildId: 2f722da304c0a508c891285e6840199c35019c8d)
+    #4 0x7ff37d0276e8 in __libc_start_main (/usr/lib/libc.so.6+0x276e8) (BuildId: 2f722da304c0a508c891285e6840199c35019c8d)
+    #5 0x55ff84d8e124 in _start (/home/matt/portfolio/heaplab/bin/asan.out+0x2124) (BuildId: 43a6519703ff0d3557923b6401362ce882736d9e)
+
+previously allocated by thread T0 here:
+    #0 0x7ff37d520cb5 in malloc /usr/src/debug/gcc/gcc/libsanitizer/asan/asan_malloc_linux.cpp:67
+    #1 0x55ff84d8ec4e in double_free src/scenarios/double_free.c:15
+    #2 0x55ff84d8e36c in main src/main.c:18
+    #3 0x7ff37d027634  (/usr/lib/libc.so.6+0x27634) (BuildId: 2f722da304c0a508c891285e6840199c35019c8d)
+    #4 0x7ff37d0276e8 in __libc_start_main (/usr/lib/libc.so.6+0x276e8) (BuildId: 2f722da304c0a508c891285e6840199c35019c8d)
+    #5 0x55ff84d8e124 in _start (/home/matt/portfolio/heaplab/bin/asan.out+0x2124) (BuildId: 43a6519703ff0d3557923b6401362ce882736d9e)
+
+SUMMARY: AddressSanitizer: double-free src/scenarios/double_free.c:23 in double_free
+==3448==ABORTING

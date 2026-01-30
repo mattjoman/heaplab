@@ -15,11 +15,13 @@ void double_free() {
     i = (int*)alloc.m_alloc(sizeof(int));
     *i = 3;
 
-    printf("%p\n", i);
-    printf("%d\n", *i);
+    printf("Int allocated at %p\n", i);
+    printf("With value       %d\n", *i);
 
+    printf("Freeing the memory...\n");
     alloc.m_free(i);
 
+    printf("Freeing the memory again...\n");
     alloc.m_free(i);
 
     return;

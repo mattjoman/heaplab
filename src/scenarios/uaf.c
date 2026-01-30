@@ -11,18 +11,21 @@ void uaf() {
     int *i;
 
     alloc = get_malloc_allocator();
-    printf("Hello from uaf\n");
 
     i = (int*)alloc.m_alloc(sizeof(int));
     *i = 3;
 
-    printf("%p\n", i);
-    printf("%d\n", *i);
+    printf("Allocated an int at %p\n", i);
+    printf("With a value of     %d\n", *i);
 
     alloc.m_free(i);
 
-    printf("%p\n", i);
-    printf("%d\n", *i);
+    printf("Freed the int at    %p\n", i);
+    printf("Value is now        %d\n", *i);
+
+    *i = 4;
+
+    printf("Value updated to    %d\n", *i);
 
     return;
 }
