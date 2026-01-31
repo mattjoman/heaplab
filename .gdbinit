@@ -1,10 +1,9 @@
+set pagination off
+
 define ptrinfo
     printf "Address: %p\n", $arg0
     printf "Size:    %d\n", sizeof(*($arg0))
 end
-
-
-
 
 define xmem
     set $ptr   = $arg0
@@ -17,9 +16,6 @@ define xmem
         x/1gx $ptr
     end
 end
-
-
-
 
 define dumpmem
     set $ptr            = $arg0
@@ -41,15 +37,11 @@ define dumpmem
 
     printf "\n"
 
-
     while ($n_after--)
         xmem $ptr $bytes_per_line
         set $ptr = $ptr + $bytes_per_line
     end
 end
-
-
-
 
 define dumpchunk
     set $ptr = $arg0
@@ -69,9 +61,54 @@ define dumpchunk
     printf "Hex dump:\n"
 
     set $n = $size / 8
+    if ($n > 16)
+        set $n = 16
+        printf "Hex dump truncated to %d bytes...\n", $n * 8
+    end
+
     set $ptr = (char*)$ptr_prev_size
     while ($n--)
         x/1gx $ptr
         set $ptr = $ptr + 8
     end
+end
+
+define heap_overflow_scenario
+    break src/scenarios/heap_overflow.c:16
+    break src/scenarios/heap_overflow.c:22
+    break src/scenarios/heap_overflow.c:27
+    run
+
+    printf "=========================================\n"
+    printf "Buffers allocated but no data yet:\n"
+    printf "=========================================\n"
+    printf "Dumping chunk for buffer_1:\n"
+    dumpchunk buffer_1
+    printf "Dumping chunk for buffer_2:\n"
+    dumpchunk buffer_2
+    printf "Dumping memory from buffer_2:\n"
+    dumpmem buffer_2 8 0 8
+
+    printf "Continuing...\n\n"
+    continue
+
+    printf "=========================================\n"
+    printf "Buffers loaded with data:\n"
+    printf "=========================================\n"
+    printf "Dumping chunk for buffer_1:\n"
+    dumpchunk buffer_1
+    printf "Dumping chunk for buffer_2:\n"
+    dumpchunk buffer_2
+
+    printf "Continuing...\n\n"
+    continue
+
+    printf "=========================================\n"
+    printf "buffer_2 loaded with lots of data:\n"
+    printf "=========================================\n"
+    printf "Dumping chunk for buffer_2:\n"
+    dumpchunk buffer_2
+
+    printf "Continuing...\n\n"
+    continue
 end

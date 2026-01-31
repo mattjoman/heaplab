@@ -1,0 +1,52 @@
+=================================================================
+==4898==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x7bff717e0032 at pc 0x7fdf72f1e1a7 bp 0x7ffd229abb80 sp 0x7ffd229ab328
+WRITE of size 3 at 0x7bff717e0032 thread T0
+    #0 0x7fdf72f1e1a6 in memcpy /usr/src/debug/gcc/gcc/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115
+    #1 0x55ccbb4cb0f7 in heap_overflow src/scenarios/heap_overflow.c:16
+    #2 0x55ccbb4ca3cc in main src/main.c:20
+    #3 0x7fdf72a27634  (/usr/lib/libc.so.6+0x27634) (BuildId: 2f722da304c0a508c891285e6840199c35019c8d)
+    #4 0x7fdf72a276e8 in __libc_start_main (/usr/lib/libc.so.6+0x276e8) (BuildId: 2f722da304c0a508c891285e6840199c35019c8d)
+    #5 0x55ccbb4ca134 in _start (/home/matt/portfolio/heaplab/bin/asan.out+0x2134) (BuildId: 5bf42ad476f41c3afbd9633d5ae4d16557709dbe)
+
+0x7bff717e0032 is located 0 bytes after 2-byte region [0x7bff717e0030,0x7bff717e0032)
+allocated by thread T0 here:
+    #0 0x7fdf72f20cb5 in malloc /usr/src/debug/gcc/gcc/libsanitizer/asan/asan_malloc_linux.cpp:67
+    #1 0x55ccbb4cb0d2 in heap_overflow src/scenarios/heap_overflow.c:14
+    #2 0x55ccbb4ca3cc in main src/main.c:20
+    #3 0x7fdf72a27634  (/usr/lib/libc.so.6+0x27634) (BuildId: 2f722da304c0a508c891285e6840199c35019c8d)
+    #4 0x7fdf72a276e8 in __libc_start_main (/usr/lib/libc.so.6+0x276e8) (BuildId: 2f722da304c0a508c891285e6840199c35019c8d)
+    #5 0x55ccbb4ca134 in _start (/home/matt/portfolio/heaplab/bin/asan.out+0x2134) (BuildId: 5bf42ad476f41c3afbd9633d5ae4d16557709dbe)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow src/scenarios/heap_overflow.c:16 in heap_overflow
+Shadow bytes around the buggy address:
+  0x7bff717dfd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7bff717dfe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7bff717dfe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7bff717dff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7bff717dff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x7bff717e0000: fa fa 02 fa fa fa[02]fa fa fa fa fa fa fa fa fa
+  0x7bff717e0080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7bff717e0100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7bff717e0180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7bff717e0200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7bff717e0280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==4898==ABORTING
