@@ -1,6 +1,6 @@
 # Use After Free
 
-This analysis corresponds to the code in `/src/scenarios/uaf.c`.
+This analysis corresponds to the code in `src/scenarios/uaf.c`.
 
 Use after free is when heap memory is freed by the allocator, but later the
 memory is accessed and used.

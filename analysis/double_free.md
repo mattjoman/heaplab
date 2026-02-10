@@ -1,6 +1,6 @@
 # Double Free
 
-This analysis corresponds to the code in `/src/scenarios/double_free.c`.
+This analysis corresponds to the code in `src/scenarios/double_free.c`.
 
 ## Example Output
 

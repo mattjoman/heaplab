@@ -1,6 +1,6 @@
 # Heap Overflow Analysis
 
-This analysis corresponds to the code in `/src/scenarios/heap_overflow.c`.
+This analysis corresponds to the code in `src/scenarios/heap_overflow.c`.
 
 ## Gdb Analysis
 
