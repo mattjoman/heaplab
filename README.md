@@ -6,8 +6,9 @@ tools.
 
 The project implements a series of intentionally buggy heap scenarios and
 analyzes them using:
+
 - **AddressSanitizer (ASan)**
-- **Valgrind** *(coming soon)*
+- **Valgrind** *(planned)*
 - **Custom GDB commands** for inspecting heap chunks and allocator metadata
 
 The focus is on understanding *why* failures occur, not just detecting that
@@ -29,7 +30,7 @@ they do.
 - GCC, Make
 
 *Note: On Arch Linux, getting glibc debuginfo required for valgrind is a pain.
-I am planning to try a different distro for this reason*
+I am planning to try a different distro for this reason.*
 
 ## Usage
 
@@ -53,6 +54,10 @@ point.
 
 ## Logs
 
-Example output from the various tools and scenarios can be found in the `logs/`
-directory.
+Example output from the various tools and scenarios can be found in `logs/`.
 Use these in conjunction with the analyses.
+
+## Todo
+
+- Add Valgrind analysis 
+- Write a simple custom allocator
