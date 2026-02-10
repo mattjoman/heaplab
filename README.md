@@ -1,30 +1,58 @@
 # HeapLab
 
+HeapLab is a hands-on exploration of **glibc malloc internals**, common heap
+vulnerabilities, and the effectiveness of modern debugging and sanitization
+tools.
+
+The project implements a series of intentionally buggy heap scenarios and
+analyzes them using:
+- **AddressSanitizer (ASan)**
+- **Valgrind** *(coming soon)*
+- **Custom GDB commands** for inspecting heap chunks and allocator metadata
+
+The focus is on understanding *why* failures occur, not just detecting that
+they do.
+
+## Scenarios
+
+- Use-after-free
+- Double free
+- Heap overflow
+
 ## Requirements
 
-- Glibc debuginfo (for valgrind) -- not available on arch without some pain
+- Linux
+- Glibc (this was tested with version 2.42 unless stated otherwise)
+- Glibc debuginfo
 - Valgrind
+- GDB
 - GCC, Make
+
+*Note: On Arch Linux, getting glibc debuginfo required for valgrind is a pain.
+I am planning to try a different distro for this reason*
 
 ## Usage
 
-- `scripts/asan.sh` to build & execute asan tests
+- Compile the code: `./build.sh`
+- Run a scenario: `./bin/<build>.out <scenario>` (e.g. `./bin/asan.out uaf`)
+- To use my custom GDB commands, in GDB run `source .gdbinit`
 
-## Notes
+## GDB Extensions
 
-- Don't implement `src/inspect/glibc.c`
-    - This will require reverse-engineering some of glibc
-    - Version drift will cause inspection code to break
-    - Consider implementing heap inspection for my custom allocator when finished
-- Builds:
-    - Main build (with debugging enabled)
-    - Asan build (with debugging & -fsanitize=address)
-- Add scenarios:
-    - `uaf_reuse.c`
-    - `uaf_read.c`
-    - `uaf_write.c`
-- Run on debian for valgrind memcheck
+The `.gdbinit` file contains custom commands for:
 
-## Use After Free (UAF)
+- General memory inspection
+- Inspecting a glibc allocator chunk's metadata and memory
+- Automatically stepping through scenarios and displaying relevant data
 
-To run this scenario, run `build/out uaf`.
+## Analysis
+
+Detailed write-ups are available in the `analysis/`.
+The `heap_overflow` includes a full GDB walkthrough and is a good starting
+point.
+
+## Logs
+
+Example output from the various tools and scenarios can be found in the `logs/`
+directory.
+Use these in conjunction with the analyses.
